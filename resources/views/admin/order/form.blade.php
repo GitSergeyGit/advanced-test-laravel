@@ -38,16 +38,6 @@
             @endisset
         </div>
 
-
-        <div class="mb-3">
-            <label for="user_id" class="form-label">User</label>
-            <select name="user_id" id="user_id">
-                @foreach($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->username }} ({{ $user->email }})</option>
-                @endforeach
-            </select>
-        </div>
-
         <div class="mb-3">
             <label for="products" class="form-label">Products</label>
             <select name="products[]" id="products" multiple>

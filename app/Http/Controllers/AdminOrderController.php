@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class AdminOrderController
@@ -33,11 +34,12 @@ class AdminOrderController
                 'min:5',
             ],
             'total' => ['required'],
-            'user_id' => ['exists:users,id'],
             'products' => ['required', 'exists:products,id'],
         ]);
 
-        $order = Order::create($request->all());
+        $userInfo = $request->all();
+        $userInfo['user_id'] = Auth::id();
+        $order = Order::create($userInfo);
         $order->products()->attach($request->input('products'));
         return redirect()->route('admin.order');
     }
