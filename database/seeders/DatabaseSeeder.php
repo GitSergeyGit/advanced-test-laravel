@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\Page;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,5 +27,7 @@ class DatabaseSeeder extends Seeder
         $orders->each(function ($order) use ($products) {
             $order->products()->attach($products->random(rand(2, 5))->pluck('id'));
         });
+
+        Page::factory(20)->create();
     }
 }

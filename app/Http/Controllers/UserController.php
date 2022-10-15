@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 
 class UserController
 {
     public function index()
     {
-        $users = User::paginate(15);
+//        $users = User::paginate(15);
+        $users = User::with(['orders', 'orders.products'])->get();
         return view('user/index', compact('users'));
     }
 

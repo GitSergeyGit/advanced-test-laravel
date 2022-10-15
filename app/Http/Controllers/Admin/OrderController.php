@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -9,24 +10,41 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class AdminOrderController
+class OrderController extends Controller
 {
+//    public function __construct(){
+//        $this->authorizeResource(Order::class, 'order');
+//    }
+
     public function index()
     {
-        $orders = Order::paginate(5);
-        return view('admin/order/index', compact('orders'));
+//        if(!User::find(2)->can('create', Order::class)){
+//            abort(403);
+//        }
+        return view('admin/order/index', [
+            'orders' => Order::paginate(5)
+        ]);
     }
 
     public function create()
     {
-        $order = new Order();
-        $users = User::all();
-        $products = Product::all();
-        return view('admin/order/form', compact('order', 'users', 'products'));
+//        if (!Auth::user()->can('create', Order::class)) {
+//            abort(403);
+//        }
+//        $this->authorize('create', Order::class);
+        return view('admin/order/form', [
+            'products' => Product::all(),
+            'order' => new Order(),
+            'users' => User::all(),
+        ]);
     }
 
     public function store(Request $request)
     {
+        if (!$request->user()->can('store', Order::class)) {
+            abort(403);
+        }
+
         $request->validate([
             'title' => [
                 'required',
@@ -47,15 +65,17 @@ class AdminOrderController
     public function edit($id)
     {
         $order = Order::find($id);
-        $users = User::all();
-        $products = Product::all();
-        return view('admin/order/form-edit', compact('order', 'users', 'products'));
+        $this->authorize('update', $order);
+        return view('admin/order/form-edit', [
+            'order' => $order,
+            'users' => User::all(),
+            'products' => Product::all(),
+        ]);
     }
 
     public function update(Request $request, $id)
     {
         $order = Order::find($id);
-
         $request->validate([
             'title' => [
                 'required',

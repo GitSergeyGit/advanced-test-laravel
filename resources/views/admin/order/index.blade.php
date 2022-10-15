@@ -1,7 +1,9 @@
 @extends('layout')
 
 @section('content')
-    <a href="{{ route('admin.order.create') }}" class="btn btn-primary">Add Order</a>
+    @can('create', \App\Models\Order::class)
+        <a href="{{ route('admin.order.create') }}" class="btn btn-primary">Add Order</a>
+    @endcan
     <table class="table">
         <thead>
         <tr>
@@ -11,6 +13,7 @@
             <th scope="col">Description</th>
             <th scope="col">Created At</th>
             <th scope="col">Updated At</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +25,11 @@
                 <td>{{ $order->description }}</td>
                 <td>{{ $order->created_at }}</td>
                 <td>{{ $order->updated_at->diffForHumans() }}</td>
+                <td>
+                    @can('update', $order)
+                        <a href="{{ route('admin.order.edit', ['id' => $order->id]) }}">Edit</a>
+                    @endcan
+                </td>
             </tr>
         @empty
             <p>Empty</p>
