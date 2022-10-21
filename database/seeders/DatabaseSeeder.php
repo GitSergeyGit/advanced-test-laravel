@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Product;
@@ -28,6 +29,13 @@ class DatabaseSeeder extends Seeder
             $order->products()->attach($products->random(rand(2, 5))->pluck('id'));
         });
 
-        Page::factory(20)->create();
+        $pages = Page::factory(20)->create();
+        Comment::factory(20)->create();
+//
+//        $pages->each(function ($page) {
+//            $comment = new Comment();
+//            $comment->body = 'adwawdawd';
+//            $page->comments()->save($comment);
+//        });
     }
 }

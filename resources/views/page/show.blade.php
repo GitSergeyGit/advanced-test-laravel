@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <h1>{{ $page->title }}</h1>
+    <h1>Page: {{ $page->title }}</h1>
     <p>{{ $page->description }}</p>
 
     <hr>

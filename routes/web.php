@@ -9,6 +9,9 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Oauth\GoogleController;
+use App\Http\Controllers\Oauth\GitHubController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,14 +25,21 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('main');
+Route::get('/oauth/github/callback', GitHubController::class)->name('oauth.github.callback');
+Route::get('/oauth/google/callback', GoogleController::class)->name('oauth.google.callback');
 
 Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::get('/user/{id}', [UserController::class, 'orders'])->name('user.orders');
 Route::get('/user/order/{id}', OrderByUserController::class)->name('user.by.order');
 
-Route::get('/page', [PageController::class, 'index'])->name('page');
-Route::get('/page/{id}', [PageController::class, 'show'])->name('page.show');
-Route::post('/page/comment/{id}', [PageController::class, 'addComment'])->name('page.add.comment');
+
+Route::prefix('page')->group(function (){
+    Route::get('/', [PageController::class, 'index'])->name('page');
+    Route::get('/{id}', [PageController::class, 'show'])->name('page.show');
+    Route::post('/comment/{id}', [PageController::class, 'addComment'])->name('page.add.comment');
+});
+
+Route::get('/comments', CommentController::class)->name('comments');
 
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
