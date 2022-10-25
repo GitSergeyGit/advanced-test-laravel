@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\PanelController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\AuthController;
@@ -62,6 +63,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/order/update', [OrderController::class, 'update'])->name('admin.order.update');
     Route::get('/admin/order/{id}/delete', [OrderController::class, 'destroy'])->name('admin.order.destroy');
 
+    Route::get('/admin/product', [AdminProductController::class, 'index']);
+    Route::get('/admin/product/{id}', [AdminProductController::class, 'show']);
 });
 
 

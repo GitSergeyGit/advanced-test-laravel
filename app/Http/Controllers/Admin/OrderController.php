@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\TrimStrings;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -12,10 +13,6 @@ use Illuminate\Validation\Rule;
 
 class OrderController extends Controller
 {
-//    public function __construct(){
-//        $this->authorizeResource(Order::class, 'order');
-//    }
-
     public function index()
     {
 //        if(!User::find(2)->can('create', Order::class)){
@@ -41,6 +38,8 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
+//        $request = new Request();
+
         if (!$request->user()->can('store', Order::class)) {
             abort(403);
         }

@@ -174,6 +174,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Repositories\Product\ProductServiceProvider::class,
+        App\Services\Product\ProductFacadeServiceProvider::class,
 
     ],
 
