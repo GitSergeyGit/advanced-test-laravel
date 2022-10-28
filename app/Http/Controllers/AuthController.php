@@ -12,8 +12,8 @@ class AuthController
     {
         $urlGitHub = 'https://github.com/login/oauth/authorize';
         $parameters = [
-            'client_id' => getenv('OAUTH_GITHUB_CLIENT_ID'),
-            'redirect_uri' => getenv('OAUTH_GITHUB_REDIRECT_URI'),
+            'client_id' => config()->get('services.github.client_id'),
+            'redirect_uri' => config()->get('services.github.redirect'),
             'scope' => 'user',
         ];
         $urlGitHub .= '?' . http_build_query($parameters);

@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Oauth\GoogleController;
 use App\Http\Controllers\Oauth\GitHubController;
+use App\Http\Controllers\Admin\GeoIpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ use App\Http\Controllers\Oauth\GitHubController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('main');
+Route::get('/geo', [GeoIpController::class, 'index']);
+
 Route::get('/oauth/github/callback', GitHubController::class)->name('oauth.github.callback');
 Route::get('/oauth/google/callback', GoogleController::class)->name('oauth.google.callback');
 
