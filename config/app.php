@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Repositories\Product\ProductServiceProvider::class,
         App\Services\Product\ProductFacadeServiceProvider::class,
+        Hillel\Geo\Test\GeoServiceProvider::class
 
     ],
 
