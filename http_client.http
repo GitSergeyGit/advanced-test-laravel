@@ -1,0 +1,30 @@
+GET http://hillel-php.laravel/api/product
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer 5|uasaxPM5d4swFsFuHum0jWs9TuBq5b6D9LEPcx5J
+
+###
+
+POST http://hillel-php.laravel/api/token/create
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "cortney75@example.org",
+  "password": "password",
+  "device_name": "phone"
+}
+
+###
+#
+GET http://hillel-php.laravel/api/user
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer 4|8Cgn7j59kRxLsOIIdG4RlptvQ2l6suNpZUO1bgYS
+
+###
+
+GET http://hillel-php.laravel/api/auth/logout
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer 4|8Cgn7j59kRxLsOIIdG4RlptvQ2l6suNpZUO1bgYS
