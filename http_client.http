@@ -1,7 +1,8 @@
 GET http://hillel-php.laravel/api/product
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 5|uasaxPM5d4swFsFuHum0jWs9TuBq5b6D9LEPcx5J
+Authorization: Bearer 9|B5Jlh7lYT9HU0FaOybb9SkZRCo6LNeiQJqoCA0bI
+#Authorization: Bearer 10|NbmU5DzUuK0me7ib1Mvpl2RKEq1qPDb03EKXmord
 
 ###
 

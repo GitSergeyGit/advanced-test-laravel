@@ -31,6 +31,12 @@ class TestEmail implements ShouldQueue
      */
     public function handle()
     {
+//        $adw = [
+//            'filter' => [
+//                'name' => 'awdawd',
+//                'email' => 'awdawd',
+//            ]
+//        ];
         echo $this->message . PHP_EOL;
     }
 }

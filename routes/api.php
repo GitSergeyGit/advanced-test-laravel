@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:sanctum')->get('/product', [ProductController::class, 'index']);
+Route::middleware(['auth:sanctum', 'abilities:product:view'])->get('/product', [ProductController::class, 'index']);
 Route::middleware('auth:sanctum')->get('/auth/logout', [AuthController::class, 'logout']);
 
 Route::post('/token/create', [AuthController::class, 'createToken']);

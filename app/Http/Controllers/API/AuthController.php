@@ -21,8 +21,13 @@ class AuthController
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages('Невалідні дані!');
         }
-
+//        if($user->role_name == 'admin') {
+//            // create, update, delete, view
+//        } else {
+//            // view
+//        }
         return $user->createToken($request->device_name)->plainTextToken;
+//        return $user->createToken($request->device_name, ['product:view'])->plainTextToken;
     }
 
     public function logout(Request $request)
