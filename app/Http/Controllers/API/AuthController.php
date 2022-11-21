@@ -9,6 +9,13 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController
 {
+    /**
+     * @OA\Get(
+     *     path="/create/token",
+     *     description="Home page",
+     *     @OA\Response(response="default", description="Welcome page")
+     * )
+     */
     public function createToken(Request $request)
     {
         $request->validate([

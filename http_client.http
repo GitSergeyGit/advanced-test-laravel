@@ -18,7 +18,8 @@ Content-Type: application/json
 
 ###
 #
-GET http://hillel-php.laravel/api/user
+GET http://hillel-php.laravel/api/user/list
+GET http://hillel-php.laravel/api/user/create
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer 4|8Cgn7j59kRxLsOIIdG4RlptvQ2l6suNpZUO1bgYS

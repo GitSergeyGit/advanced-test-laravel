@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\TrimStrings;
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -43,24 +44,8 @@ class OrderController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-//        $request = new Request();
-
-        if (!$request->user()->can('store', Order::class)) {
-            abort(403);
-        }
-
-        $request->validate([
-            'title' => [
-                'required',
-                'unique:orders,title',
-                'min:5',
-            ],
-            'total' => ['required'],
-            'products' => ['required', 'exists:products,id'],
-        ]);
-
         $userInfo = $request->all();
         $userInfo['user_id'] = Auth::id();
         $order = Order::create($userInfo);

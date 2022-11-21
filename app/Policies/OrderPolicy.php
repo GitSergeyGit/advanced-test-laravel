@@ -41,7 +41,7 @@ class OrderPolicy
      */
     public function create(User $user)
     {
-        return $user->id === 1;
+        return true;
     }
 
     public function store(User $user)
