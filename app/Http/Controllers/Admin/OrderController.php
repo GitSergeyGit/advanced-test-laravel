@@ -14,8 +14,29 @@ use Illuminate\Validation\Rule;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $email = $request->input('filter.email');
+//        dd($request->input('filter.email'));
+
+//        DB::unprepared('call awdawd();');
+
+        $order = Order::query();
+        if (!empty($email)) {
+            $order->join('users', 'orders.user_id', '=', 'users.id')
+                ->where('users.email', '=', $email);
+        }
+
+        if ($request->has('filter.total')) {
+            $order->where('orders.total', '>', $request->input('filter.total'));
+        }
+
+
+//        $orders = $order->get();
+        $orders = $order->toSql();
+        dd($orders);
+
+
 //        dd(request());
 //        Project::all();
         // filter[user][email]
