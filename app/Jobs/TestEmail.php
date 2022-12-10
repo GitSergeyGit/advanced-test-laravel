@@ -19,7 +19,7 @@ class TestEmail implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(string $message)
+    public function __construct(string $message): mixed
     {
         $this->message = $message;
     }
@@ -29,7 +29,7 @@ class TestEmail implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): mixed
     {
 //        $adw = [
 //            'filter' => [

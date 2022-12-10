@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\CreatedOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Requests\OrderRequest;
@@ -71,6 +72,10 @@ class OrderController extends Controller
         $userInfo['user_id'] = Auth::id();
         $order = Order::create($userInfo);
         $order->products()->attach($request->input('products'));
+
+        // event
+//        CreatedOrder::dispatch();
+
         return redirect()->route('admin.order');
     }
 
