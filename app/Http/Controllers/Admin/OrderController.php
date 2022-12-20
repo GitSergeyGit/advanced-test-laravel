@@ -24,6 +24,7 @@ class OrderController extends Controller
 
         $order = Order::query();
         if (!empty($email)) {
+            $order->load(['user']);
             $order->join('users', 'orders.user_id', '=', 'users.id')
                 ->where('users.email', '=', $email);
         }
@@ -33,17 +34,17 @@ class OrderController extends Controller
         }
 
 
-//        $orders = $order->get();
-        $orders = $order->toSql();
-        dd($orders);
+            $orders = $order->get();
+        foreach ($orders as $order){
+            $id = $order->id;
+        }
+//            $orders = $order->toSql();
+//            dd($orders);
 
-
-//        dd(request());
+    //        dd(request());
 //        Project::all();
         // filter[user][email]
 //        Project::where('author_id', $filter['user']['email'])
-
-
 
 //        if(!User::find(2)->can('create', Order::class)){
 //            abort(403);

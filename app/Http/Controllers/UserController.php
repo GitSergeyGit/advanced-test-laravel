@@ -10,10 +10,10 @@ class UserController
 {
     public function index()
     {
-        $url = Storage::disk('gcs')->temporaryUrl(
-            'privet_example.txt', now()->addMinutes(1)
-        );
-        dd($url);
+//        $url = Storage::disk('gcs')->temporaryUrl(
+//            'privet_example.txt', now()->addMinutes(1)
+//        );
+//        dd($url);
 //        Storage::prepend('example.txt', 'Prepended Text');
 //
 //        Storage::append('example.txt', 'Appended Text');
@@ -25,9 +25,24 @@ class UserController
 
 //        Storage::disk('public')->put('example.txt', 'Contents');
 //
-////        $users = User::paginate(15);
-//        $users = User::with(['orders', 'orders.products'])->get();
-//        return view('user/index', compact('users'));
+        $users = User::paginate(1);
+//        $users = User::with(['orders'])->get();
+        // Select * user
+        //  select * orders where user_id in (1,2,3,4)
+
+
+//        $users = User::where([//////]);
+//            /// \
+//            if () {
+//
+//            }
+//            ///
+//            $users->get()
+//        dd($users);
+
+
+
+        return view('user/index', compact('users'));
     }
 
     public function orders($id)
