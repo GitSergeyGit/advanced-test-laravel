@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\GeoIpController;
 
 Route::get('/', [HomeController::class, 'index'])->name('main');
 Route::get('/geo', [GeoIpController::class, 'index']);
+Route::get('/todo', [\App\Http\Controllers\TodoController::class, 'index']);
 
 Route::get('/oauth/github/callback', GitHubController::class)->name('oauth.github.callback');
 Route::get('/oauth/google/callback', GoogleController::class)->name('oauth.google.callback');
@@ -68,6 +69,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/admin/product', [AdminProductController::class, 'index']);
     Route::get('/admin/product/{id}', [AdminProductController::class, 'show']);
+
+    Route::get('/admin/todo', [\App\Http\Controllers\Admin\TodoController::class, 'index'])->name('admin.todo');
 });
 
 

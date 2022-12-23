@@ -6,6 +6,6 @@ class HomeController
 {
     public function index()
     {
-        return view('welcome');
+        return response()->view('welcome')->setStatusCode(200);
     }
 }
